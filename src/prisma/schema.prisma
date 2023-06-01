@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model tasks {
+  id        Int     @id
+  text      String  @db.VarChar
+  completed Boolean @default(false)
+  todo_id   Int
+  todos     todos   @relation(fields: [todo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model todos {
+  id         Int      @id
+  title      String   @db.VarChar
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  tasks      tasks[]
+}
