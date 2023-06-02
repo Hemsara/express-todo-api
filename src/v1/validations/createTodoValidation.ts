@@ -1,10 +1,11 @@
 import Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
+import { ITask } from '../../models/todo.js';
 
-export const validateRegistration = (req: Request, res: Response, next: NextFunction) => {
+export const validateTodoCreate = (req: Request, res: Response, next: NextFunction) => {
     const bodySchema = Joi.object({
       title: Joi.string().required(),
-     
+      tasks: Joi.array<ITask>(), 
     });
   
 
@@ -24,4 +25,4 @@ export const validateRegistration = (req: Request, res: Response, next: NextFunc
     next();
   };
 
-  export default validateRegistration;
+  export default validateTodoCreate;

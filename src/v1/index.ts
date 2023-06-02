@@ -7,7 +7,7 @@ const router = Router();
 router.get("/todos", TodoController.getTodos);
 router.get("/todos/todo/:id", TodoController.getSingleTodo);
 router.delete("/todos/todo/delete/:id", TodoController.deleteTodo);
-router.post("/todos/create", CreateTodoValidation.validateRegistration ,TodoController.createTodo);
+router.post("/todos/create", CreateTodoValidation.validateTodoCreate ,TodoController.createTodo);
 
 
 export default router;
